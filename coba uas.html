@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMIPA UNTAN - Teknologi Masa Kini</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #f5f5f5;
+        }
+
+        /* Easter Egg: Konami Code */
+        .secret-mode {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%) !important;
+            animation: rainbow 3s infinite;
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #FDB913 0%, #F39C12 100%);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s;
+        }
+
+        /* Easter Egg: Logo spin */
+        .logo:hover img {
+            transform: rotate(360deg);
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section with Real Image */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('gambarfmipa.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background: #FDB913;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(253, 185, 19, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(253, 185, 19, 0.6);
+        }
+
+        /* Easter Egg: Click counter */
+        .click-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: none;
+            animation: slideIn 0.5s;
+            z-index: 999;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(200px); }
+            to { transform: translateX(0); }
+        }
+
+        /* Program Studi */
+        .programs {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #FDB913;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .program-card:hover::before {
+            left: 100%;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .program-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .program-card p {
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Easter Egg: Secret Message */
+        .secret-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            z-index: 10000;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .secret-message.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            display: none;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick="logoClick()">
+                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23fff'/><text x='50' y='65' text-anchor='middle' font-size='40' fill='%23FDB913' font-weight='bold'>FM</text></svg>" alt="FMIPA Logo">
+                <h1>FMIPA UNTAN</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#program">Program Studi</a></li>
+                <li><a href="#fasilitas">Fasilitas</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="beranda">
+        <div class="hero-content">
+            <h2>TEKNOLOGI MASA KINI</h2>
+            <p>Membangun Generasi Masa Kini dengan Teknologi dan Inovasi</p>
+            <p style="font-size: 1rem; font-style: italic;">Quality is Our Concern</p>
+            <button class="cta-button" onclick="handleCTA()">Jelajahi Program Kami</button>
+        </div>
+    </section>
+
+    <section class="programs" id="program">
+        <div class="container">
+            <h2 class="section-title">Program Studi Unggulan</h2>
+            <div class="program-grid">
+                <div class="program-card" onclick="programClick('SI')">
+                    <h3>💻 Sistem Informasi</h3>
+                    <p>Mengintegrasikan teknologi informasi dengan kebutuhan bisnis untuk menciptakan solusi digital yang inovatif.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Sistem Komputer')">
+                    <h3>🖥️ Sistem Komputer</h3>
+                    <p>Mempelajari arsitektur komputer, jaringan, dan sistem embedded untuk mengembangkan teknologi komputasi modern.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Matematika')">
+                    <h3>📐 Matematika</h3>
+                    <p>Mengembangkan kemampuan analitis dan pemecahan masalah melalui pendekatan matematis yang sistematis.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Fisika')">
+                    <h3>⚛️ Fisika</h3>
+                    <p>Memahami fenomena alam dan menerapkan prinsip-prinsip fisika dalam teknologi modern.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Geofisika')">
+                    <h3>🌍 Geofisika</h3>
+                    <p>Meneliti struktur bumi dan fenomena geofisika untuk eksplorasi sumber daya alam dan mitigasi bencana.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Kimia')">
+                    <h3>🧪 Kimia</h3>
+                    <p>Mengeksplorasi materi dan transformasinya untuk mengembangkan aplikasi di berbagai industri.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Biologi')">
+                    <h3>🔬 Biologi</h3>
+                    <p>Mempelajari kehidupan dan organisme untuk berkontribusi pada kesehatan dan lingkungan.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Ilmu Kelautan')">
+                    <h3>🌊 Ilmu Kelautan</h3>
+                    <p>Mengkaji ekosistem laut, biota maritim, dan pengelolaan sumber daya kelautan secara berkelanjutan.</p>
+                </div>
+                <div class="program-card" onclick="programClick('Statistika')">
+                    <h3>📊 Statistika</h3>
+                    <p>Mengolah dan menganalisis data untuk menghasilkan informasi yang mendukung pengambilan keputusan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="fasilitas">
+        <div class="container">
+            <h2 class="section-title">Fasilitas & Keunggulan</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Laboratorium Modern</h3>
+                    <p>Dilengkapi peralatan canggih untuk mendukung penelitian dan praktikum</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3>Dosen Berkualitas</h3>
+                    <p>Pengajar berpengalaman dan berdedikasi tinggi</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Jaringan Industri</h3>
+                    <p>Kerjasama dengan berbagai institusi dan perusahaan</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Prestasi Gemilang</h3>
+                    <p>Mahasiswa berprestasi di tingkat nasional dan internasional</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontak">
+        <div class="footer-content">
+            <h3>FMIPA UNTAN</h3>
+            <p>Jl. Prof. Dr. H. Hadari Nawawi, Pontianak, Kalimantan Barat</p>
+            <p>Email: fmipa@untan.ac.id | Telp: (0561) 123456</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                © 2025 FMIPA UNTAN 
+            </p>
+            <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 0.5rem;">
+                🎮 Psst... Coba cari Easter eggs di website ini! (Hint: Klik logo 5x)
+            </p>
+        </div>
+    </footer>
+
+    <!-- Easter Egg Elements -->
+    <div class="click-counter" id="clickCounter">Clicks: <span id="clickCount">0</span></div>
+    <div class="overlay" id="overlay" onclick="hideSecret()"></div>
+    <div class="secret-message" id="secretMessage">
+        <h2>🎉 Selamat! 🎉</h2>
+        <p>Kamu menemukan Easter Egg!</p>
+        <p style="margin-top: 1rem;">Semangat kuliah Sistem Informasi! 💪</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
+            "Coding is not just about writing code, it's about solving problems creatively!"
+        </p>
+        <button class="cta-button" style="margin-top: 1.5rem;" onclick="hideSecret()">Tutup</button>
+    </div>
+
+    <script>
+        // Easter Egg: Logo click counter
+        let logoClicks = 0;
+        let totalClicks = 0;
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+        function logoClick() {
+            logoClicks++;
+            totalClicks++;
+            
+            if (logoClicks === 5) {
+                showSecret();
+                logoClicks = 0;
+            }
+            
+            updateClickCounter();
+        }
+
+        function updateClickCounter() {
+            const counter = document.getElementById('clickCounter');
+            const countSpan = document.getElementById('clickCount');
+            countSpan.textContent = totalClicks;
+            
+            if (totalClicks > 0) {
+                counter.style.display = 'block';
+            }
+        }
+
+        function showSecret() {
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('secretMessage').classList.add('show');
+        }
+
+        function hideSecret() {
+            document.getElementById('overlay').classList.remove('show');
+            document.getElementById('secretMessage').classList.remove('show');
+        }
+
+        // Easter Egg: Konami Code
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join('') === konamiSequence.join('')) {
+                document.body.classList.add('secret-mode');
+                alert('🌈 Rainbow Mode Activated! 🌈');
+            }
+        });
+
+        // Program card click
+        let programClicks = {};
+        function programClick(program) {
+            if (!programClicks[program]) {
+                programClicks[program] = 0;
+            }
+            programClicks[program]++;
+            
+            if (programClicks[program] === 3) {
+                alert(`Wow! Kamu sangat tertarik dengan ${program}! 😄`);
+                programClicks[program] = 0;
+            }
+        }
+
+        // CTA Button
+        function handleCTA() {
+            document.getElementById('program').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Easter Egg: Jam menunjukkan waktu coding sempurna
+        const now = new Date();
+        const hour = now.getHours();
+        if (hour >= 22 || hour < 6) {
+            console.log('🌙 Tengah malam adalah waktu terbaik untuk coding! Keep going! 💻');
+        } else if (hour >= 6 && hour < 12) {
+            console.log('☀️ Pagi yang produktif! Semangat mengerjakan tugas! 🚀');
+        }
+
+        // Secret console message
+        console.log('%c🎓 FMIPA UNTAN', 'font-size: 24px; font-weight: bold; color: #FDB913;');
+        console.log('%cSelamat datang, future tech innovator! 🚀', 'font-size: 14px; color: #667eea;');
+        console.log('%cTips: Coba tekan tombol panah: ↑ ↑ ↓ ↓ ← → ← → B A', 'font-size: 12px; color: #999;');
+    </script>
+</body>
+</html>
